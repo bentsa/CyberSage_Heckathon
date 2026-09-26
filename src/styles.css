@@ -1,0 +1,150 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
+  --color-cyber: var(--cyber);
+  --color-panel: var(--panel);
+  --color-panel-border: var(--panel-border);
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+:root {
+  --radius: 0.625rem;
+
+  /* Deep command-center dark palette */
+  --background: oklch(0.16 0.02 250);
+  --foreground: oklch(0.96 0.01 240);
+
+  --panel: oklch(0.20 0.025 250);
+  --panel-border: oklch(0.30 0.03 250);
+
+  --card: oklch(0.21 0.025 250);
+  --card-foreground: oklch(0.96 0.01 240);
+
+  --popover: oklch(0.21 0.025 250);
+  --popover-foreground: oklch(0.96 0.01 240);
+
+  /* CyberSage signature cyan */
+  --primary: oklch(0.78 0.16 200);
+  --primary-foreground: oklch(0.15 0.02 250);
+
+  --secondary: oklch(0.26 0.03 250);
+  --secondary-foreground: oklch(0.96 0.01 240);
+
+  --muted: oklch(0.24 0.025 250);
+  --muted-foreground: oklch(0.68 0.02 250);
+
+  --accent: oklch(0.65 0.20 290);            /* electric violet */
+  --accent-foreground: oklch(0.98 0.01 240);
+
+  --destructive: oklch(0.65 0.24 25);
+  --destructive-foreground: oklch(0.98 0.01 240);
+  --warning: oklch(0.80 0.16 75);
+  --success: oklch(0.74 0.16 155);
+  --info: oklch(0.72 0.13 235);
+  --cyber: oklch(0.78 0.16 200);
+
+  --border: oklch(0.30 0.03 250);
+  --input: oklch(0.28 0.03 250);
+  --ring: oklch(0.78 0.16 200);
+}
+
+.dark {
+  --background: oklch(0.16 0.02 250);
+  --foreground: oklch(0.96 0.01 240);
+  --card: oklch(0.21 0.025 250);
+  --card-foreground: oklch(0.96 0.01 240);
+  --popover: oklch(0.21 0.025 250);
+  --popover-foreground: oklch(0.96 0.01 240);
+  --primary: oklch(0.78 0.16 200);
+  --primary-foreground: oklch(0.15 0.02 250);
+  --secondary: oklch(0.26 0.03 250);
+  --secondary-foreground: oklch(0.96 0.01 240);
+  --muted: oklch(0.24 0.025 250);
+  --muted-foreground: oklch(0.68 0.02 250);
+  --accent: oklch(0.65 0.20 290);
+  --accent-foreground: oklch(0.98 0.01 240);
+  --destructive: oklch(0.65 0.24 25);
+  --destructive-foreground: oklch(0.98 0.01 240);
+  --border: oklch(0.30 0.03 250);
+  --input: oklch(0.28 0.03 250);
+  --ring: oklch(0.78 0.16 200);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html, body { background-color: var(--color-background); color: var(--color-foreground); }
+  body {
+    font-family: var(--font-sans);
+    background-image:
+      radial-gradient(ellipse 1200px 600px at 10% -10%, color-mix(in oklch, var(--cyber) 14%, transparent), transparent 60%),
+      radial-gradient(ellipse 1000px 500px at 100% 0%, color-mix(in oklch, var(--accent) 12%, transparent), transparent 60%),
+      linear-gradient(180deg, color-mix(in oklch, var(--background) 88%, transparent), color-mix(in oklch, var(--background) 88%, transparent)),
+      url("/za-flag-bg.png");
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+    background-size: auto, auto, auto, cover;
+    background-position: 0 0, 0 0, 0 0, center;
+    background-attachment: fixed, fixed, fixed, fixed;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: color-mix(in oklch, var(--panel) 78%, transparent);
+    backdrop-filter: blur(10px);
+    border: 1px solid color-mix(in oklch, var(--panel-border) 70%, transparent);
+  }
+  .glow-cyber { box-shadow: 0 0 0 1px color-mix(in oklch, var(--cyber) 40%, transparent), 0 10px 40px -10px color-mix(in oklch, var(--cyber) 50%, transparent); }
+  .glow-accent { box-shadow: 0 0 0 1px color-mix(in oklch, var(--accent) 40%, transparent), 0 10px 40px -10px color-mix(in oklch, var(--accent) 50%, transparent); }
+  .grid-bg {
+    background-image:
+      linear-gradient(color-mix(in oklch, var(--panel-border) 60%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in oklch, var(--panel-border) 60%, transparent) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  .text-cyber { color: var(--cyber); }
+  .bg-cyber { background-color: var(--cyber); }
+  .text-success { color: var(--success); }
+  .text-warning { color: var(--warning); }
+  .text-info { color: var(--info); }
+  @keyframes pulse-dot { 0%,100% { opacity: 1; transform: scale(1);} 50% { opacity: .35; transform: scale(.85);} }
+  .pulse-dot { animation: pulse-dot 1.6s ease-in-out infinite; }
+  @keyframes sweep { 0% { transform: translateX(-100%);} 100% { transform: translateX(100%);} }
+  .sweep::after {
+    content:""; position:absolute; inset:0;
+    background: linear-gradient(90deg, transparent, color-mix(in oklch, var(--cyber) 30%, transparent), transparent);
+    animation: sweep 2.4s linear infinite;
+  }
+  .ticker { mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+}
